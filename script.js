@@ -1,16 +1,16 @@
 const APIURL = "https://api.github.com/users/";
 
-const main = document.getElementById("main");
-const form = document.getElementById("form");
-const search = document.getElementById("search");
+const main = document.querySelector("#main");
+const form = document.querySelector("#form");
+const search = document.querySelector("#search");
 
 getUser("YakovlevDS");
 
 async function getUser(username) {
-    const resp = await fetch(APIURL + username);
-    const respData = await resp.json();
+    const res = await fetch(`${APIURL}${username}`);
+    const resData = await res.json();
 
-    createUserCard(respData);
+    createUserCard(resData);
 
     getRepos(username);
 }
@@ -71,7 +71,6 @@ form.addEventListener("submit", (e) => {
 
     if (user) {
         getUser(user);
-
         search.value = "";
     }
 });
